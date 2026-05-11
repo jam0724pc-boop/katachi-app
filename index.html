@@ -39,14 +39,7 @@ html,body{
   -webkit-text-size-adjust:100%;text-size-adjust:100%;
 }
 
-button{
-  -webkit-appearance:none;appearance:none;
-  font-family:inherit;
-  touch-action:manipulation;
-  cursor:pointer;
-}
-.menu-card{width:100%;}
-.diff-card{width:100%;text-align:left;}
+button{-webkit-appearance:none;appearance:none;}
 
 ruby rt{font-size:.52em;letter-spacing:.02em}
 
@@ -183,15 +176,15 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
 .game-instruction{background:var(--c-blue-l);border-radius:var(--radius-sm);padding:9px 14px;font-size:16px;font-weight:700;color:var(--c-blue-d);border-left:5px solid var(--c-blue);flex-shrink:0}
 .game-cards-area{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;flex:1;align-content:start}
 .game-shape-card{
-  background:var(--glass-b);border-radius:14px;box-shadow:var(--shadow);
-  padding:7px 4px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;border:2.5px solid rgba(255,255,255,.6);
-  transition:transform .15s,border-color .15s;min-height:66px;
+  background:#fff;border-radius:14px;box-shadow:var(--shadow);
+  padding:10px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:1.5px solid #e0e0e0;
+  transition:transform .15s,border-color .15s,background .15s;min-height:80px;
 }
 .game-shape-card:active{transform:scale(.91)}
-.game-shape-card.selected{border-color:var(--c-blue);box-shadow:0 0 0 4px rgba(62,168,245,.3);transform:scale(1.07)}
-.game-shape-card.correct{border-color:var(--c-green);background:var(--c-green-l)}
-.game-shape-card.wrong{border-color:var(--c-red);background:var(--c-red-l)}
+.game-shape-card.selected{border-color:var(--c-blue) !important;box-shadow:0 0 0 4px rgba(62,168,245,.3);transform:scale(1.07)}
+.game-shape-card.correct{border-color:var(--c-green) !important;background:var(--c-green-l)}
+.game-shape-card.wrong{border-color:var(--c-red) !important;background:var(--c-red-l)}
 .game-shape-card.placed{opacity:.4;cursor:default}
 
 .game-right{flex:1;display:flex;flex-direction:column;padding:10px 12px 10px 8px;gap:8px;overflow:hidden}
@@ -202,7 +195,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
   cursor:pointer;transition:border-color .2s,background .2s;overflow:hidden;
 }
 .game-zone.highlight{border-color:var(--c-blue);background:var(--c-blue-l)}
-.game-zone-title{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.game-zone-title{font-size:17px;font-weight:700;margin-bottom:6px;color:var(--text)}
 .game-zone-items{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .zone-placed-card{background:#fff;border-radius:10px;padding:4px;display:flex;align-items:center;justify-content:center;border:2px solid transparent}
 .zone-placed-card.correct-placed{border-color:var(--c-green);background:var(--c-green-l)}
@@ -210,10 +203,35 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
 .game-score-area{font-size:15px;font-weight:700;color:var(--sub);flex-shrink:0}
 .game-controls{display:flex;gap:8px;flex-shrink:0}
 .game-controls .btn{flex:1;font-size:17px;padding:11px}
+.game-diff-badge{font-size:13px;font-weight:700;border-radius:20px;padding:4px 12px;color:#fff;flex-shrink:0;margin-left:auto}
+.game-diff-badge.easy  {background:var(--c-easy)}
+.game-diff-badge.normal{background:var(--c-normal)}
+.game-diff-badge.hard  {background:var(--c-hard)}
+/* game zone as button */
+button.game-zone{width:100%;font-family:inherit;text-align:left}
+.game-zones.three-zones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;flex:1;min-height:0}
+.game-zones.three-zones .game-zone{padding:7px}
+.game-zone-title{display:flex;align-items:center;gap:6px}
+.game-zones.three-zones .game-zone-title{font-size:13px;gap:4px}
+/* button cards */
+button.game-shape-card{font-family:inherit}
+.game-back-diff{font-size:15px;padding:8px;display:none;margin-top:4px;width:100%}
+.zone-placed-card svg{display:block}
+
+/* ══ GAME DIFFICULTY ══ */
+#screen-game-diff .screen-body{align-items:center;justify-content:center;padding:12px 24px}
+button.diff-card{width:100%;font-family:inherit;text-align:left}
 
 /* ══ DRAW ══ */
 #screen-draw .screen-body{flex-direction:row}
-.draw-left{flex:1;display:flex;flex-direction:column;padding:10px;gap:6px}
+.draw-left{width:58%;display:flex;flex-direction:column;padding:10px;min-height:0}
+.draw-canvas-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+#draw-canvas{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2.5px solid #e0d0ca;touch-action:none;display:block;max-width:100%;max-height:100%}
+.draw-right{
+  flex:1;display:flex;flex-direction:column;
+  padding:16px;gap:10px;
+  background:rgba(255,253,240,.85);border-left:2px solid var(--border);overflow-y:auto;
+}
 .draw-tabs{display:flex;gap:6px;flex-shrink:0}
 .draw-tab{
   flex:1;padding:8px 10px;border:2px solid #ddd;border-radius:var(--radius-sm);
@@ -221,18 +239,15 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
   background:#fff;color:var(--sub);transition:background .15s,color .15s,border-color .15s;
 }
 .draw-tab.active{background:var(--c-orange);color:#fff;border-color:var(--c-orange)}
-.draw-question{font-size:22px;font-weight:700;text-align:center;flex-shrink:0}
-.draw-progress{font-size:14px;color:var(--sub);text-align:center;flex-shrink:0}
-.draw-canvas-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
-#draw-canvas{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2.5px solid #e0d0ca;touch-action:none;display:block;max-height:100%}
-.draw-right{
-  width:210px;display:flex;flex-direction:column;
-  padding:14px;gap:12px;justify-content:center;
-  background:rgba(255,253,240,.85);border-left:2px solid var(--border);flex-shrink:0;
+.draw-question{font-size:22px;font-weight:700;flex-shrink:0;line-height:1.4}
+.draw-progress{font-size:14px;color:var(--sub);flex-shrink:0}
+.draw-feedback{
+  background:var(--c-orange-l);border-radius:var(--radius-sm);
+  padding:10px 12px;font-size:16px;line-height:1.6;flex-shrink:0;
+  min-height:56px;color:var(--text);
 }
-.draw-hint{color:var(--sub);font-size:15px;line-height:1.65}
-.draw-controls{display:flex;flex-direction:column;gap:9px}
-.draw-controls .btn{font-size:17px;padding:11px}
+.draw-feedback.correct{background:var(--c-green-l);color:var(--c-green-d)}
+.draw-feedback.wrong{background:var(--c-red-l);color:var(--c-red-d)}
 
 /* ══ DIFFICULTY ══ */
 #screen-difficulty .screen-body{align-items:center;justify-content:center;padding:12px 24px}
@@ -366,7 +381,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
 
     <div class="menu-right">
       <div class="menu-grid" role="list">
-        <button class="menu-card" onclick="showScreen('zukan');zukanIdx=0;updateZukan();">
+        <div class="menu-card" role="listitem" tabindex="0" onclick="showScreen('zukan');zukanIdx=0;updateZukan();playTap()">
           <div class="menu-card-icon-wrap">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="5" y="3" width="20" height="24" rx="2.5"/>
@@ -377,8 +392,8 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           </div>
           <div class="menu-card-label">かたちを みてみよう</div>
           <div class="menu-card-sub"><ruby>図鑑<rt>ずかん</rt></ruby>でかたちをおぼえよう</div>
-        </button>
-        <button class="menu-card" onclick="showScreen('game');initGame();">
+        </div>
+        <div class="menu-card" role="listitem" tabindex="0" onclick="showScreen('game-diff');updateGameDiffScreen();playTap()">
           <div class="menu-card-icon-wrap">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="15,3 27,22 3,22"/>
@@ -387,8 +402,8 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           </div>
           <div class="menu-card-label">なかまわけ ゲーム</div>
           <div class="menu-card-sub"><ruby>三角形<rt>さんかくけい</rt></ruby>と<ruby>四角形<rt>しかくけい</rt></ruby>をわけよう</div>
-        </button>
-        <button class="menu-card" onclick="showScreen('draw');initDraw();">
+        </div>
+        <div class="menu-card" role="listitem" tabindex="0" onclick="showScreen('draw');initDraw();playTap()">
           <div class="menu-card-icon-wrap">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 3 L27 8 L10 25 L3 27 L5 20 Z"/>
@@ -397,8 +412,8 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           </div>
           <div class="menu-card-label">かいて みよう</div>
           <div class="menu-card-sub">ゆびで<ruby>形<rt>かたち</rt></ruby>をかいてみよう</div>
-        </button>
-        <button class="menu-card" onclick="showScreen('difficulty');updateDiffScreen();">
+        </div>
+        <div class="menu-card" role="listitem" tabindex="0" onclick="showScreen('difficulty');updateDiffScreen();playTap()">
           <div class="menu-card-icon-wrap">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="15,2 18.5,11 28,11 20.5,17 23.3,27 15,21 6.7,27 9.5,17 2,11 11.5,11"/>
@@ -407,7 +422,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           <div class="menu-card-label">クイズに ちょうせん！</div>
           <div class="menu-card-sub">むずかしさをえらんでちょうせん</div>
           <div class="menu-card-badge" id="quiz-best-badge">-</div>
-        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -435,30 +450,70 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
 <!-- ══ SCREEN 3: GAME ══ -->
 <div id="screen-game" class="screen">
   <div class="header">
+    <button class="header-back" onclick="showScreen('game-diff');updateGameDiffScreen();playTap()" aria-label="もどる">◀</button>
+    <div class="header-title">なかまわけ ゲーム</div>
+    <span class="game-diff-badge" id="game-diff-badge"></span>
+  </div>
+  <div class="screen-body">
+    <div class="game-left" id="game-left">
+      <div class="game-instruction" id="game-instruction">カードをえらんで、みぎのゾーンにおこう！</div>
+      <div class="game-cards-area" id="game-cards-area" role="list"></div>
+    </div>
+    <div class="game-right">
+      <div class="game-zones" id="game-zones"></div>
+      <div class="game-score-area" id="game-score-area">クリア: 0かい</div>
+      <div class="game-controls">
+        <button class="btn btn-green" id="game-check-btn" onclick="checkGame()">こたえをみる ✓</button>
+        <button class="btn btn-gray" onclick="resetGame()">もういちど</button>
+      </div>
+      <button class="btn btn-blue game-back-diff" id="game-back-diff-btn" onclick="showScreen('game-diff');updateGameDiffScreen();playTap()">むずかしさを かえる</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 3A: GAME DIFFICULTY ══ -->
+<div id="screen-game-diff" class="screen">
+  <div class="header">
     <button class="header-back" onclick="showScreen('menu');playTap()" aria-label="もどる">◀</button>
     <div class="header-title">なかまわけ ゲーム</div>
   </div>
   <div class="screen-body">
-    <div class="game-left">
-      <div class="game-instruction">カードをえらんで、みぎのゾーンにおこう！</div>
-      <div class="game-cards-area" id="game-cards-area" role="list"></div>
-    </div>
-    <div class="game-right">
-      <div class="game-zones">
-        <div class="game-zone" id="zone-triangle" onclick="placeToZone('triangle')">
-          <div class="game-zone-title">🔺 さんかくけいの なかま</div>
-          <div class="game-zone-items" id="zone-triangle-items"></div>
+    <div class="diff-inner">
+      <div class="diff-hero-title">むずかしさを えらんでね！</div>
+      <div class="diff-hero-sub">かたちをなかまわけしよう</div>
+      <button class="diff-card diff-card-easy" onclick="startGameWithDiff('easy');playTap()">
+        <div class="diff-card-icon">🌱</div>
+        <div class="diff-card-body">
+          <div class="diff-card-name">やさしい</div>
+          <div class="diff-card-desc">4まい・さんかくとしかくをわけよう</div>
         </div>
-        <div class="game-zone" id="zone-quad" onclick="placeToZone('quad')">
-          <div class="game-zone-title">🟦 しかくけいの なかま</div>
-          <div class="game-zone-items" id="zone-quad-items"></div>
+        <div class="diff-card-best">
+          <div class="diff-card-best-label">クリア</div>
+          <div class="diff-card-best-val" id="game-clear-easy-val">0かい</div>
         </div>
-      </div>
-      <div class="game-score-area" id="game-score-area">クリア: 0かい</div>
-      <div class="game-controls">
-        <button class="btn btn-green" onclick="checkGame()">こたえをみる ✓</button>
-        <button class="btn btn-gray" onclick="resetGame()">もういちど</button>
-      </div>
+      </button>
+      <button class="diff-card diff-card-normal" onclick="startGameWithDiff('normal');playTap()">
+        <div class="diff-card-icon">⭐</div>
+        <div class="diff-card-body">
+          <div class="diff-card-name">ふつう</div>
+          <div class="diff-card-desc">8まい・いろんなさんかくとしかくをわけよう</div>
+        </div>
+        <div class="diff-card-best">
+          <div class="diff-card-best-label">クリア</div>
+          <div class="diff-card-best-val" id="game-clear-normal-val">0かい</div>
+        </div>
+      </button>
+      <button class="diff-card diff-card-hard" onclick="startGameWithDiff('hard');playTap()">
+        <div class="diff-card-icon">🔥</div>
+        <div class="diff-card-body">
+          <div class="diff-card-name">むずかしい</div>
+          <div class="diff-card-desc">12まい・ちょっかくさんかくけいをみわけよう</div>
+        </div>
+        <div class="diff-card-best">
+          <div class="diff-card-best-label">クリア</div>
+          <div class="diff-card-best-val" id="game-clear-hard-val">0かい</div>
+        </div>
+      </button>
     </div>
   </div>
 </div>
@@ -468,27 +523,25 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
   <div class="header">
     <button class="header-back" onclick="showScreen('menu');playTap()" aria-label="もどる">◀</button>
     <div class="header-title">かいて みよう</div>
-    <span class="quiz-diff-badge" id="draw-diff-badge" style="display:none"></span>
   </div>
   <div class="screen-body">
     <div class="draw-left">
-      <div class="draw-tabs">
-        <button class="draw-tab active" id="tab-free" onclick="switchDrawMode('free')">✏️ じゆうに かく</button>
-        <button class="draw-tab" id="tab-dot" onclick="switchDrawMode('dot')">• 点つなぎ</button>
-      </div>
-      <div class="draw-question" id="draw-question"></div>
-      <div class="draw-progress" id="draw-progress">1 / 5もん</div>
       <div class="draw-canvas-wrap">
-        <canvas id="draw-canvas" width="560" height="340"></canvas>
+        <canvas id="draw-canvas" width="560" height="420"></canvas>
       </div>
     </div>
     <div class="draw-right">
-      <div class="draw-hint" id="draw-hint">ゆびでかいてね。かどをつけよう！</div>
-      <div class="draw-controls">
-        <button class="btn btn-primary btn-block" onclick="judgeDrawing()">はんてい！</button>
-        <button class="btn btn-gray btn-block" onclick="clearCanvas()">けす</button>
-        <button class="btn btn-blue btn-block" onclick="nextDrawQuestion()" id="draw-next-btn" style="display:none">つぎ ▶</button>
+      <div class="draw-tabs">
+        <button class="draw-tab active" id="tab-free" type="button" onclick="switchDrawMode('free')">✏️ じゆうにかく</button>
+        <button class="draw-tab" id="tab-dot" type="button" onclick="switchDrawMode('dot')">● てんをつなぐ</button>
       </div>
+      
+      <div class="draw-question" id="draw-question"></div>
+      <div class="draw-progress" id="draw-progress">1 / 5もん</div>
+      <button class="btn btn-primary btn-block" type="button" id="draw-judge-btn" onclick="judgeDrawing()">はんてい！</button>
+      <button class="btn btn-gray btn-block" type="button" onclick="clearCanvas()">けす</button>
+      <div class="draw-feedback" id="draw-hint"></div>
+      <button class="btn btn-blue btn-block" type="button" onclick="nextDrawQuestion()" id="draw-next-btn" style="display:none">つぎのもんだい ▶</button>
     </div>
   </div>
 </div>
@@ -503,7 +556,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
     <div class="diff-inner">
       <div class="diff-hero-title">むずかしさを えらんでね！</div>
       <div class="diff-hero-sub">じぶんにあったレベルでちょうせんしよう</div>
-      <button class="diff-card diff-card-easy" onclick="startQuiz('easy');">
+      <div class="diff-card diff-card-easy" onclick="startQuiz('easy');playTap()" tabindex="0">
         <div class="diff-card-icon">🌱</div>
         <div class="diff-card-body">
           <div class="diff-card-name">やさしい</div>
@@ -514,7 +567,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           <div class="diff-card-best-val" id="best-easy-val">—</div>
         </div>
       </div>
-      <button class="diff-card diff-card-normal" onclick="startQuiz('normal');">
+      <div class="diff-card diff-card-normal" onclick="startQuiz('normal');playTap()" tabindex="0">
         <div class="diff-card-icon">⭐</div>
         <div class="diff-card-body">
           <div class="diff-card-name">ふつう</div>
@@ -525,7 +578,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           <div class="diff-card-best-val" id="best-normal-val">—</div>
         </div>
       </div>
-      <button class="diff-card diff-card-hard" onclick="startQuiz('hard');">
+      <div class="diff-card diff-card-hard" onclick="startQuiz('hard');playTap()" tabindex="0">
         <div class="diff-card-icon">🔥</div>
         <div class="diff-card-body">
           <div class="diff-card-name">むずかしい</div>
@@ -535,7 +588,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
           <div class="diff-card-best-label">さいこう</div>
           <div class="diff-card-best-val" id="best-hard-val">—</div>
         </div>
-      </button>
+      </div>
     </div>
   </div>
 </div>
@@ -590,7 +643,7 @@ ruby rt{font-size:.52em;letter-spacing:.02em}
   </div>
 </div>
 
-<div class="stamp-overlay" id="stamp-overlay" aria-hidden="true" style="display:none;pointer-events:none"></div>
+<div class="stamp-overlay" id="stamp-overlay" aria-hidden="true"></div>
 <div class="sparkle-container" id="sparkle-container" aria-hidden="true"></div>
 <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
 
@@ -649,8 +702,6 @@ function updateMenuBadges(){
   const bestEl=document.getElementById('quiz-best-badge');
   const allBest=Math.max(d.bestEasy||0,d.bestNormal||0,d.bestHard||0);
   if(allBest>0){bestEl.textContent='さいこう '+allBest+'てん';bestEl.classList.add('visible')}
-  const gs=document.getElementById('game-score-area');
-  if(gs)gs.textContent='クリア: '+(d.gameClear||0)+'かい';
 }
 function updateDiffScreen(){
   const d=loadData();
@@ -663,9 +714,8 @@ function updateDiffScreen(){
 /* ══ ANIMATIONS ══ */
 function showStamp(ok){
   const el=document.getElementById('stamp-overlay');
-  el.style.display='flex';
   el.innerHTML='<div class="stamp">'+(ok?'⭕':'❌')+'</div>';
-  setTimeout(()=>{el.innerHTML='';el.style.display='none';},900);
+  setTimeout(()=>{el.innerHTML=''},900);
 }
 function spawnSparkles(){
   const c=document.getElementById('sparkle-container');
@@ -895,89 +945,163 @@ function updateZukan(){
 }
 
 /* ══ GAME ══ */
-function makeSVGSmall(shape){
-  const w=64,h=55;
-  const dot=(cx,cy,c)=>`<circle cx="${cx}" cy="${cy}" r="4.5" fill="${c}"/><circle cx="${cx}" cy="${cy}" r="2" fill="#fff" opacity=".7"/>`;
-  const ra=(x,y,s,c)=>`<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="none" stroke="${c}" stroke-width="1.5"/>`;
-
-  const m={
-    triangle_eq:[
-      `<defs><linearGradient id="sm1" x1="0" y1="0" x2=".3" y2="1"><stop offset="0%" stop-color="#b8f0d0"/><stop offset="100%" stop-color="#55bb80"/></linearGradient></defs>`,
-      `<polygon points="32,5 58,50 6,50" fill="url(#sm1)" stroke="#1a6b40" stroke-width="2.5" stroke-linejoin="round"/>`,
-      dot(32,5,'#1a6b40')+dot(58,50,'#1a6b40')+dot(6,50,'#1a6b40')
-    ].join(''),
-    triangle_right:[
-      `<defs><linearGradient id="sm2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffd8da"/><stop offset="100%" stop-color="#ee7080"/></linearGradient></defs>`,
-      `<polygon points="7,50 7,5 58,50" fill="url(#sm2)" stroke="#8a0010" stroke-width="2.5" stroke-linejoin="round"/>`,
-      ra(7,40,10,'#8a0010'),
-      dot(7,5,'#8a0010')+dot(58,50,'#8a0010')+dot(7,50,'#8a0010')
-    ].join(''),
-    triangle_iso:[
-      `<defs><linearGradient id="sm3" x1="0" y1="0" x2=".3" y2="1"><stop offset="0%" stop-color="#c0f0d8"/><stop offset="100%" stop-color="#55bb80"/></linearGradient></defs>`,
-      `<polygon points="32,5 54,50 10,50" fill="url(#sm3)" stroke="#1a6b40" stroke-width="2.5" stroke-linejoin="round"/>`,
-      dot(32,5,'#1a6b40')+dot(54,50,'#1a6b40')+dot(10,50,'#1a6b40')
-    ].join(''),
-    triangle_obt:[
-      `<defs><linearGradient id="sm4" x1="0" y1="0" x2=".3" y2="1"><stop offset="0%" stop-color="#b8f0d0"/><stop offset="100%" stop-color="#55bb80"/></linearGradient></defs>`,
-      `<polygon points="4,50 56,44 48,6" fill="url(#sm4)" stroke="#1a6b40" stroke-width="2.5" stroke-linejoin="round"/>`,
-      dot(4,50,'#1a6b40')+dot(56,44,'#1a6b40')+dot(48,6,'#1a6b40')
-    ].join(''),
-    rect:[
-      `<defs><linearGradient id="sm5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8d0f8"/><stop offset="100%" stop-color="#a060d0"/></linearGradient></defs>`,
-      `<rect x="4" y="11" width="56" height="32" fill="url(#sm5)" stroke="#5a0080" stroke-width="2.5"/>`,
-      ra(4,11,8,'#5a0080')+ra(52,11,8,'#5a0080')+ra(4,35,8,'#5a0080')+ra(52,35,8,'#5a0080'),
-      dot(4,11,'#5a0080')+dot(60,11,'#5a0080')+dot(4,43,'#5a0080')+dot(60,43,'#5a0080')
-    ].join(''),
-    square:[
-      `<defs><linearGradient id="sm6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffe8c0"/><stop offset="100%" stop-color="#ffaa30"/></linearGradient></defs>`,
-      `<rect x="10" y="6" width="44" height="44" fill="url(#sm6)" stroke="#c05000" stroke-width="2.5"/>`,
-      ra(10,6,8,'#c05000')+ra(46,6,8,'#c05000')+ra(10,42,8,'#c05000')+ra(46,42,8,'#c05000'),
-      dot(10,6,'#c05000')+dot(54,6,'#c05000')+dot(10,50,'#c05000')+dot(54,50,'#c05000')
-    ].join(''),
-    quad_skew:[
-      `<defs><linearGradient id="sm7" x1="0" y1="0" x2=".2" y2="1"><stop offset="0%" stop-color="#c8e8ff"/><stop offset="100%" stop-color="#70b8f0"/></linearGradient></defs>`,
-      `<polygon points="11,10 58,15 52,50 5,44" fill="url(#sm7)" stroke="#0d4a8a" stroke-width="2.5" stroke-linejoin="round"/>`,
-      dot(11,10,'#0d4a8a')+dot(58,15,'#0d4a8a')+dot(52,50,'#0d4a8a')+dot(5,44,'#0d4a8a')
-    ].join(''),
-    rhombus:[
-      `<defs><linearGradient id="sm8" x1="0" y1="0" x2=".2" y2="1"><stop offset="0%" stop-color="#c8e8ff"/><stop offset="100%" stop-color="#70b8f0"/></linearGradient></defs>`,
-      `<polygon points="32,4 60,27 32,52 4,27" fill="url(#sm8)" stroke="#0d4a8a" stroke-width="2.5" stroke-linejoin="round"/>`,
-      dot(32,4,'#0d4a8a')+dot(60,27,'#0d4a8a')+dot(32,52,'#0d4a8a')+dot(4,27,'#0d4a8a')
-    ].join('')
+const SHAPE_COLORS={
+  tri_eq:'#2e7d32',tri_flat:'#f57f17',tri_skew:'#e65100',tri_narrow:'#1b5e20',
+  rt_std:'#b71c1c',rt_large:'#880e4f',rt_small:'#bf360c',rt_flip:'#37474f',
+  sq_rect:'#6a1b9a',sq_square:'#1565c0',sq_para:'#c62828',sq_rhombus:'#004d40',
+};
+function makeSVGCard(shape, w){
+  w=w||80;
+  const ra=(x,y,s,c)=>`<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="none" stroke="${c}" stroke-width="2.5"/>`;
+  const shapes={
+    tri_eq:    `<polygon points="50,10 90,85 10,85"  fill="#c8e6c9" stroke="#2e7d32" stroke-width="3.5" stroke-linejoin="round"/>`,
+    tri_flat:  `<polygon points="50,45 95,80 5,80"   fill="#fff9c4" stroke="#f57f17" stroke-width="3.5" stroke-linejoin="round"/>`,
+    tri_skew:  `<polygon points="25,15 80,50 20,85"  fill="#ffe0b2" stroke="#e65100" stroke-width="3.5" stroke-linejoin="round"/>`,
+    tri_narrow:`<polygon points="50,8 62,90 38,90"   fill="#e8f5e9" stroke="#1b5e20" stroke-width="3.5" stroke-linejoin="round"/>`,
+    rt_std:    `<polygon points="15,85 85,85 15,15"  fill="#ffcdd2" stroke="#b71c1c" stroke-width="3.5" stroke-linejoin="round"/>`+ra(15,70,15,'#b71c1c'),
+    rt_large:  `<polygon points="85,85 85,15 15,85"  fill="#fce4ec" stroke="#880e4f" stroke-width="3.5" stroke-linejoin="round"/>`+ra(70,70,15,'#880e4f'),
+    rt_small:  `<polygon points="20,75 75,75 20,28"  fill="#ffccbc" stroke="#bf360c" stroke-width="3.5" stroke-linejoin="round"/>`+ra(20,60,15,'#bf360c'),
+    rt_flip:   `<polygon points="15,15 85,15 15,75"  fill="#cfd8dc" stroke="#37474f" stroke-width="3.5" stroke-linejoin="round"/>`+ra(15,15,15,'#37474f'),
+    sq_rect:   `<rect x="8" y="32" width="84" height="36" fill="#e1bee7" stroke="#6a1b9a" stroke-width="3.5"/>`,
+    sq_square: `<rect x="20" y="20" width="60" height="60" fill="#bbdefb" stroke="#1565c0" stroke-width="3.5"/>`+ra(20,20,15,'#1565c0')+ra(65,20,15,'#1565c0')+ra(20,65,15,'#1565c0')+ra(65,65,15,'#1565c0'),
+    sq_para:   `<polygon points="30,20 90,20 70,80 10,80" fill="#fce4ec" stroke="#c62828" stroke-width="3.5" stroke-linejoin="round"/>`,
+    sq_rhombus:`<polygon points="50,8 90,50 50,92 10,50" fill="#e0f2f1" stroke="#004d40" stroke-width="3.5" stroke-linejoin="round"/>`,
   };
-  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${m[shape]||''}</svg>`;
+  return `<svg width="${w}" height="${w}" viewBox="0 0 100 100" style="display:block">${shapes[shape]||''}</svg>`;
 }
 
-const GAME_SHAPES=[
-  {id:'gt1',type:'triangle',svg:makeSVGSmall('triangle_eq')},
-  {id:'gt2',type:'triangle',svg:makeSVGSmall('triangle_right')},
-  {id:'gt3',type:'triangle',svg:makeSVGSmall('triangle_iso')},
-  {id:'gt4',type:'triangle',svg:makeSVGSmall('triangle_obt')},
-  {id:'gq1',type:'quad',    svg:makeSVGSmall('rect')},
-  {id:'gq2',type:'quad',    svg:makeSVGSmall('square')},
-  {id:'gq3',type:'quad',    svg:makeSVGSmall('quad_skew')},
-  {id:'gq4',type:'quad',    svg:makeSVGSmall('rhombus')},
-];
+/* zone mini-icon SVGs */
+const ZONE_ICONS={
+  triangle:`<svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,22 2,22" fill="#333"/></svg>`,
+  righttri:`<svg width="24" height="24" viewBox="0 0 24 24"><polygon points="3,21 21,21 3,3" fill="#333"/></svg>`,
+  quad:    `<svg width="24" height="24" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" fill="#333"/></svg>`,
+};
+/* zone background colors per type */
+const ZONE_BG={triangle:'#f1f8e9',righttri:'#fff3e0',quad:'#e8eaf6'};
 
-let gameSelected=null,gamePlacements={},gameShuffled=[];
+const GAME_SETS={
+  easy:{
+    zones:['triangle','quad'],
+    zoneLabels:{'triangle':'さんかくけい','quad':'しかくけい'},
+    svgSize:110, gridCols:2,
+    cards:[
+      {id:'ge1',type:'triangle',shape:'tri_eq'},
+      {id:'ge2',type:'triangle',shape:'tri_skew'},
+      {id:'ge3',type:'quad',    shape:'sq_rect'},
+      {id:'ge4',type:'quad',    shape:'sq_square'},
+    ]
+  },
+  normal:{
+    zones:['triangle','quad'],
+    zoneLabels:{'triangle':'さんかくけい','quad':'しかくけい'},
+    svgSize:90, gridCols:4,
+    cards:[
+      {id:'gn1',type:'triangle',shape:'tri_eq'},
+      {id:'gn2',type:'triangle',shape:'tri_flat'},
+      {id:'gn3',type:'triangle',shape:'tri_skew'},
+      {id:'gn4',type:'triangle',shape:'tri_narrow'},
+      {id:'gn5',type:'quad',    shape:'sq_rect'},
+      {id:'gn6',type:'quad',    shape:'sq_square'},
+      {id:'gn7',type:'quad',    shape:'sq_para'},
+      {id:'gn8',type:'quad',    shape:'sq_rhombus'},
+    ]
+  },
+  hard:{
+    zones:['triangle','righttri','quad'],
+    zoneLabels:{'triangle':'さんかくけい','righttri':'ちょっかくさんかくけい','quad':'しかくけい'},
+    svgSize:75, gridCols:4,
+    cards:[
+      {id:'gh1', type:'triangle', shape:'tri_eq'},
+      {id:'gh2', type:'triangle', shape:'tri_eq'},
+      {id:'gh3', type:'triangle', shape:'tri_flat'},
+      {id:'gh4', type:'triangle', shape:'tri_narrow'},
+      {id:'gh5', type:'righttri', shape:'rt_std'},
+      {id:'gh6', type:'righttri', shape:'rt_large'},
+      {id:'gh7', type:'righttri', shape:'rt_small'},
+      {id:'gh8', type:'righttri', shape:'rt_flip'},
+      {id:'gh9', type:'quad',     shape:'sq_rect'},
+      {id:'gh10',type:'quad',     shape:'sq_square'},
+      {id:'gh11',type:'quad',     shape:'sq_para'},
+      {id:'gh12',type:'quad',     shape:'sq_rhombus'},
+    ]
+  }
+};
+
+let gameDiff='normal',gameSelected=null,gamePlacements={},gameShuffled=[];
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function updateGameDiffScreen(){
+  const d=loadData();
+  const fmt=v=>v?v+'かい':'0かい';
+  const normalTotal=(d.gameClearNormal||0)+(d.gameClear||0);
+  document.getElementById('game-clear-easy-val').textContent  =fmt(d.gameClearEasy);
+  document.getElementById('game-clear-normal-val').textContent=fmt(normalTotal||null);
+  document.getElementById('game-clear-hard-val').textContent  =fmt(d.gameClearHard);
+}
+
+function startGameWithDiff(diff){
+  gameDiff=diff;
+  initGame();
+  showScreen('game');
+}
 
 function initGame(){
   gameSelected=null;gamePlacements={};
-  gameShuffled=shuffle([...GAME_SHAPES]);
-  renderGameCards();renderGameZones();updateMenuBadges();
+  const set=GAME_SETS[gameDiff];
+  gameShuffled=shuffle([...set.cards]);
+  // difficulty badge
+  const badge=document.getElementById('game-diff-badge');
+  const labels={easy:'🌱 やさしい',normal:'⭐ ふつう',hard:'🔥 むずかしい'};
+  badge.textContent=labels[gameDiff];badge.className='game-diff-badge '+gameDiff;
+  // cards grid columns
+  const cols=GAME_SETS[gameDiff].gridCols;
+  document.getElementById('game-cards-area').style.gridTemplateColumns=`repeat(${cols},1fr)`;
+  // instruction
+  document.getElementById('game-instruction').textContent='カードをえらんで、みぎのゾーンにおこう！';
+  // back-diff button hidden
+  document.getElementById('game-back-diff-btn').style.display='none';
+  document.getElementById('game-check-btn').style.display='';
+  // score
+  const d=loadData();
+  const total=(d.gameClearEasy||0)+(d.gameClearNormal||0)+(d.gameClear||0)+(d.gameClearHard||0);
+  document.getElementById('game-score-area').textContent='クリア: '+total+'かい';
+  buildGameZones();
+  renderGameCards();
 }
+
+function buildGameZones(){
+  const set=GAME_SETS[gameDiff];
+  const container=document.getElementById('game-zones');
+  const isThree=set.zones.length===3;
+  container.className='game-zones'+(isThree?' three-zones':'');
+  container.innerHTML='';
+  set.zones.forEach(zone=>{
+    const btn=document.createElement('button');
+    btn.className='game-zone';btn.id='zone-'+zone;
+    btn.setAttribute('type','button');
+    btn.style.background=ZONE_BG[zone]||'';
+    btn.onclick=()=>placeToZone(zone);
+    const title=document.createElement('div');title.className='game-zone-title';
+    title.innerHTML=(ZONE_ICONS[zone]||'')+`<span>${set.zoneLabels[zone]}</span>`;
+    const items=document.createElement('div');items.className='game-zone-items';items.id='zone-'+zone+'-items';
+    btn.appendChild(title);btn.appendChild(items);
+    container.appendChild(btn);
+  });
+}
+
 function renderGameCards(){
   const area=document.getElementById('game-cards-area');area.innerHTML='';
+  const sz=GAME_SETS[gameDiff].svgSize;
   gameShuffled.forEach(s=>{
     const placed=gamePlacements[s.id]!=null;
-    const div=document.createElement('div');
-    div.className='game-shape-card'+(placed?' placed':'');
-    div.setAttribute('role','listitem');
-    div.dataset.id=s.id;
-    div.innerHTML=s.svg;
-    if(!placed)div.onclick=()=>{selectGameCard(s.id);playTap()};
-    area.appendChild(div);
+    const btn=document.createElement('button');
+    btn.className='game-shape-card'+(placed?' placed':'');
+    btn.setAttribute('type','button');btn.setAttribute('role','listitem');
+    btn.dataset.id=s.id;btn.innerHTML=makeSVGCard(s.shape,sz);
+    btn.style.border=`1.5px solid ${SHAPE_COLORS[s.shape]||'#e0e0e0'}`;
+    btn.style.padding={easy:'16px',normal:'12px',hard:'10px'}[gameDiff]||'10px';
+    if(!placed)btn.onclick=()=>{selectGameCard(s.id);playTap()};
+    area.appendChild(btn);
   });
 }
 function selectGameCard(id){
@@ -990,20 +1114,23 @@ function placeToZone(zone){
   playTap();
   gamePlacements[gameSelected]=zone;gameSelected=null;
   document.querySelectorAll('.game-zone').forEach(z=>z.classList.remove('highlight'));
-  renderGameCards();renderGameZones();
+  renderGameCards();fillGameZones();
 }
-function renderGameZones(){
-  ['triangle','quad'].forEach(zone=>{
-    const el=document.getElementById('zone-'+zone+'-items');el.innerHTML='';
+function fillGameZones(){
+  GAME_SETS[gameDiff].zones.forEach(zone=>{
+    const el=document.getElementById('zone-'+zone+'-items');if(!el)return;
+    el.innerHTML='';
     gameShuffled.filter(s=>gamePlacements[s.id]===zone).forEach(s=>{
       const d=document.createElement('div');d.className='zone-placed-card';
-      d.innerHTML=s.svg;
+      d.innerHTML=makeSVGCard(s.shape,44);
       el.appendChild(d);
     });
   });
 }
 function checkGame(){
-  if(Object.keys(gamePlacements).length<8){alert('ぜんぶのカードをおいてね！');return}
+  const set=GAME_SETS[gameDiff];
+  const total=set.cards.length;
+  if(Object.keys(gamePlacements).length<total){alert('ぜんぶのカードをおいてね！');return}
   let correct=0;
   gameShuffled.forEach(s=>{
     const ok=gamePlacements[s.id]===s.type;
@@ -1011,92 +1138,150 @@ function checkGame(){
     const el=document.querySelector(`.game-shape-card[data-id="${s.id}"]`);
     if(el)el.classList.add(ok?'correct':'wrong');
   });
-  ['triangle','quad'].forEach(zone=>{
-    const el=document.getElementById('zone-'+zone+'-items');
+  set.zones.forEach(zone=>{
+    const el=document.getElementById('zone-'+zone+'-items');if(!el)return;
     el.querySelectorAll('.zone-placed-card').forEach((el2,idx)=>{
       const s=gameShuffled.filter(s=>gamePlacements[s.id]===zone)[idx];
       if(s)el2.classList.add(s.type===zone?'correct-placed':'wrong-placed');
     });
   });
-  if(correct===8){
+  if(correct===total){
     playFanfare();spawnConfetti();spawnSparkles();
     setTimeout(()=>{
-      const d=loadData();d.gameClear=(d.gameClear||0)+1;saveData(d);
-      const gs=document.getElementById('game-score-area');
-      if(gs)gs.textContent='クリア: '+d.gameClear+'かい 🎉';
+      const d=loadData();
+      const key='gameClear'+gameDiff.charAt(0).toUpperCase()+gameDiff.slice(1);
+      d[key]=(d[key]||0)+1;saveData(d);
+      const tot=(d.gameClearEasy||0)+(d.gameClearNormal||0)+(d.gameClear||0)+(d.gameClearHard||0);
+      document.getElementById('game-score-area').textContent='🎉 かんぺき！クリア: '+tot+'かい';
+      document.getElementById('game-back-diff-btn').style.display='block';
+      document.getElementById('game-check-btn').style.display='none';
     },400);
   }else{
     playWrong();showStamp(false);
-    setTimeout(()=>alert(correct+' / 8 せいかいだよ！もういちどためしてみよう！'),500);
+    setTimeout(()=>alert(correct+' / '+total+' せいかいだよ！もういちどためしてみよう！'),500);
   }
 }
 function resetGame(){playTap();initGame()}
 
 /* ══ DRAW ══ */
-const DRAW_QS=[
-  {text:'<ruby>三角形<rt>さんかくけい</rt></ruby>',    target:3,hint:'かどが3つになるようにかこう',            shapeId:'triangle'},
-  {text:'<ruby>四角形<rt>しかくけい</rt></ruby>',    target:4,hint:'かどが4つになるようにかこう',            shapeId:'quad'},
-  {text:'<ruby>長方形<rt>ちょうほうけい</rt></ruby>',target:4,hint:'ながしかくをかこう',                    shapeId:'rect'},
-  {text:'<ruby>正方形<rt>せいほうけい</rt></ruby>',  target:4,hint:'ましかくをかこう',                      shapeId:'square'},
-  {text:'<ruby>直角三角形<rt>ちょっかくさんかくけい</rt></ruby>',target:3,hint:'かどがちょっかくのさんかくをかこう',shapeId:'righttri'},
-];
-let drawMode='free';
-let drawQIdx=0,drawCanvas,drawCtx,drawPts=[],isDrawing=false,drawEventsSet=false;
-
-// Dot mode state
-const DOT_SP=60;
-let dotGrid=[],dotSegs=[],dotSelected=null,dotTapStart=null;
-
-/* ══ DRAW JUDGMENT HELPERS ══ */
+const DRAW_QS={
+  easy:[
+    {label:'さんかくけいを かいてね！',             shapeId:'triangle'},
+    {label:'しかくけいを かいてね！',               shapeId:'quad'},
+    {label:'まるを かいてね！',                      shapeId:'circle'},
+    {label:'さんかくけいを おおきく かいてね！',     shapeId:'triangle'},
+    {label:'しかくけいを かいてね！',               shapeId:'quad'},
+  ],
+  normal:[
+    {label:'ながしかく（ちょうほうけい）を かいてね！', shapeId:'rect'},
+    {label:'ましかく（せいほうけい）を かいてね！',     shapeId:'square'},
+    {label:'さんかくけいを かいてね！',                 shapeId:'triangle'},
+    {label:'ちょっかくさんかくけいを かいてね！',       shapeId:'righttri'},
+    {label:'しかくけいを かいてね！',                   shapeId:'quad'},
+  ],
+  hard:[
+    {label:'ちょうほうけいを かいてね！（せいほうけいは ふせいかい）',             shapeId:'rect_strict'},
+    {label:'せいほうけいを かいてね！（ちょうほうけいは ふせいかい）',             shapeId:'square_strict'},
+    {label:'ちょっかくさんかくけいを かいてね！',                                  shapeId:'righttri'},
+    {label:'さんかくけいを かいてね！（ちょっかくさんかくけいは ふせいかい）',     shapeId:'triangle_strict'},
+    {label:'ひしがたを かいてね！',                                               shapeId:'rhombus'},
+  ],
+};
 const TOLERANCE={
-  easy:  {cornerMargin:2,ratioSquare:{min:0.60,max:1.67},ratioRect:{min:1.25,max:0.80},rightAngle:{min:70,max:110},mustClose:false},
-  normal:{cornerMargin:1,ratioSquare:{min:0.75,max:1.33},ratioRect:{min:1.45,max:0.69},rightAngle:{min:75,max:105},mustClose:true},
-  hard:  {cornerMargin:0,ratioSquare:{min:0.85,max:1.18},ratioRect:{min:1.60,max:0.63},rightAngle:{min:80,max:100},mustClose:true}
+  easy:  {cornerMargin:2, squareRatio:{max:1.5},  rectRatio:{min:1.2}, rightAngle:25, mustClose:false},
+  normal:{cornerMargin:1, squareRatio:{max:1.3},  rectRatio:{min:1.3}, rightAngle:20, mustClose:true},
+  hard:  {cornerMargin:0, squareRatio:{max:1.2},  rectRatio:{min:1.4}, rightAngle:15, mustClose:true},
 };
 function getDrawDiff(){try{return localStorage.getItem('quizDifficulty')||'normal'}catch{return'normal'}}
-function calcBBox(pts){
-  let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
-  pts.forEach(p=>{x0=Math.min(x0,p.x);y0=Math.min(y0,p.y);x1=Math.max(x1,p.x);y1=Math.max(y1,p.y)});
-  return{x0,y0,x1,y1,w:x1-x0,h:y1-y0};
+function getCurrentQs(){const d=getDrawDiff();return DRAW_QS[d]||DRAW_QS.normal}
+
+let drawMode='free';
+let drawQIdx=0,drawCanvas,drawCtx,drawPts=[],isDrawing=false,drawEventsSet=false;
+const DOT_SP=70;
+let dotGrid=[],dotSegs=[],dotSelected=null,dotTapStart=null;
+
+/* ── Geometry helpers ── */
+function getRDP(pts,eps){
+  if(pts.length<=2)return pts;
+  let maxD=0,idx=0;const end=pts.length-1;
+  for(let i=1;i<end;i++){const d=_perpD(pts[i],pts[0],pts[end]);if(d>maxD){maxD=d;idx=i}}
+  if(maxD>eps)return[...getRDP(pts.slice(0,idx+1),eps).slice(0,-1),...getRDP(pts.slice(idx),eps)];
+  return[pts[0],pts[end]];
 }
-function calcAspect(pts){
-  const b=calcBBox(pts);const l=Math.max(b.w,b.h),s=Math.min(b.w,b.h);return s<1?999:l/s;
+function _perpD(p,a,b){
+  const dx=b.x-a.x,dy=b.y-a.y,len=Math.sqrt(dx*dx+dy*dy);
+  if(len===0)return Math.hypot(p.x-a.x,p.y-a.y);
+  return Math.abs((dy*p.x-dx*p.y+b.x*a.y-b.y*a.x)/len);
 }
-function angleAt(A,B,C){
+function _ang3(A,B,C){
   const v1={x:A.x-B.x,y:A.y-B.y},v2={x:C.x-B.x,y:C.y-B.y};
   const m=Math.sqrt((v1.x**2+v1.y**2)*(v2.x**2+v2.y**2));
-  if(m<0.001)return 0;
+  if(m<0.001)return 180;
   return Math.acos(Math.max(-1,Math.min(1,(v1.x*v2.x+v1.y*v2.y)/m)))*180/Math.PI;
 }
-function hasRightAngle(verts,closedPoly,tol){
-  const n=verts.length;if(n<3)return false;
-  const ok=a=>a>=tol.rightAngle.min&&a<=tol.rightAngle.max;
-  if(closedPoly){for(let i=0;i<n;i++)if(ok(angleAt(verts[(i-1+n)%n],verts[i],verts[(i+1)%n])))return true;}
-  else{for(let i=1;i<n-1;i++)if(ok(angleAt(verts[i-1],verts[i],verts[i+1])))return true;}
+function countCorners(simplified){
+  const n=simplified.length;if(n<3)return 0;
+  let count=0;
+  for(let i=0;i<n;i++){
+    if(_ang3(simplified[(i-1+n)%n],simplified[i],simplified[(i+1)%n])<=140)count++;
+  }
+  return count;
+}
+function getBBox(pts){
+  let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+  pts.forEach(p=>{x0=Math.min(x0,p.x);y0=Math.min(y0,p.y);x1=Math.max(x1,p.x);y1=Math.max(y1,p.y)});
+  const w=x1-x0,h=y1-y0;
+  return{x:x0,y:y0,w,h,cx:(x0+x1)/2,cy:(y0+y1)/2};
+}
+function getAspectRatio(pts){
+  const b=getBBox(pts);const s=Math.min(b.w,b.h);return s<1?999:Math.max(b.w,b.h)/s;
+}
+function isClosed(pts){
+  if(pts.length<10)return false;
+  const b=getBBox(pts);const diag=Math.sqrt(b.w**2+b.h**2)||50;
+  return Math.hypot(pts[pts.length-1].x-pts[0].x,pts[pts.length-1].y-pts[0].y)<diag*0.22;
+}
+function hasRightAngleFn(simplified,tol){
+  const n=simplified.length;if(n<3)return false;
+  for(let i=0;i<n;i++){
+    if(Math.abs(_ang3(simplified[(i-1+n)%n],simplified[i],simplified[(i+1)%n])-90)<=tol)return true;
+  }
   return false;
 }
-function isClosedDraw(pts){
-  if(pts.length<10)return false;
-  const b=calcBBox(pts);const diag=Math.sqrt(b.w**2+b.h**2)||50;
-  return Math.hypot(pts[pts.length-1].x-pts[0].x,pts[pts.length-1].y-pts[0].y)<diag*0.18;
+function isCircle(pts){
+  if(pts.length<20)return false;
+  const b=getBBox(pts);
+  const dists=pts.map(p=>Math.hypot(p.x-b.cx,p.y-b.cy));
+  const mean=dists.reduce((s,d)=>s+d,0)/dists.length;
+  if(mean<10)return false;
+  const std=Math.sqrt(dists.reduce((s,d)=>s+(d-mean)**2,0)/dists.length);
+  return (std/mean)<0.25&&countCorners(getRDP(pts,6))<=2;
+}
+function _getCorners(pts,closed){
+  const simp=getRDP(pts,6);
+  if(closed){
+    // Remove near-duplicate endpoint before wrap-around count
+    if(simp.length>=3&&Math.hypot(simp[simp.length-1].x-simp[0].x,simp[simp.length-1].y-simp[0].y)<20)simp.pop();
+    return{simp,corners:countCorners(simp)};
+  }
+  return{simp,corners:Math.max(simp.length-1,0)};
 }
 
 function initDraw(){
-  drawMode='free';
-  drawQIdx=0;
-  drawCanvas=document.getElementById('draw-canvas');drawCtx=drawCanvas.getContext('2d');
+  drawMode='free';drawQIdx=0;
+  drawCanvas=document.getElementById('draw-canvas');
+  drawCtx=drawCanvas.getContext('2d');
   const wrap=drawCanvas.parentElement;
-  const maxW=wrap.clientWidth-24;
-  const maxH=wrap.clientHeight-24;
-  const w=Math.min(maxW,560);
-  const h=Math.min(Math.round(w*.6),maxH);
-  drawCanvas.width=w;drawCanvas.height=h;
+  const maxW=wrap.clientWidth-20,maxH=wrap.clientHeight-20;
+  drawCanvas.width=Math.min(maxW,600);
+  drawCanvas.height=Math.min(maxH,460);
   if(!drawEventsSet){setupDrawEvents();drawEventsSet=true}
   initDotGrid();
   document.getElementById('tab-free').classList.add('active');
   document.getElementById('tab-dot').classList.remove('active');
   setDrawQuestion();clearCanvas();
   document.getElementById('draw-next-btn').style.display='none';
+  _setFeedback('','');
 }
 
 function switchDrawMode(mode){
@@ -1105,7 +1290,7 @@ function switchDrawMode(mode){
   document.getElementById('tab-dot').classList.toggle('active',mode==='dot');
   drawPts=[];dotSegs=[];dotSelected=null;
   document.getElementById('draw-next-btn').style.display='none';
-  setDrawQuestion();
+  setDrawQuestion();_setFeedback('','');
   if(mode==='free')clearFreeCanvas();
   else renderDotCanvas();
 }
@@ -1161,40 +1346,96 @@ function clearFreeCanvas(){
   if(!drawCtx)return;
   drawCtx.clearRect(0,0,drawCanvas.width,drawCanvas.height);
   drawCtx.fillStyle='#fff';drawCtx.fillRect(0,0,drawCanvas.width,drawCanvas.height);
-  drawCtx.strokeStyle='#f0e8e4';drawCtx.lineWidth=1;
-  for(let x=0;x<drawCanvas.width;x+=40){drawCtx.beginPath();drawCtx.moveTo(x,0);drawCtx.lineTo(x,drawCanvas.height);drawCtx.stroke()}
-  for(let y=0;y<drawCanvas.height;y+=40){drawCtx.beginPath();drawCtx.moveTo(0,y);drawCtx.lineTo(drawCanvas.width,y);drawCtx.stroke()}
   drawPts=[];
 }
 function clearCanvas(){
   document.getElementById('draw-next-btn').style.display='none';
+  _setFeedback('','');
   if(drawMode==='dot'){dotSegs=[];dotSelected=null;renderDotCanvas();setDrawQuestion();return}
   clearFreeCanvas();
 }
+function _setFeedback(msg,type){
+  const el=document.getElementById('draw-hint');
+  el.textContent=msg;el.className='draw-feedback'+(type?' '+type:'');
+}
 
 function setDrawQuestion(){
-  const q=DRAW_QS[drawQIdx];
-  document.getElementById('draw-question').innerHTML=q.text+'を かいてね！';
+  const qs=getCurrentQs();const q=qs[drawQIdx%qs.length];
+  document.getElementById('draw-question').textContent=q.label;
   document.getElementById('draw-progress').textContent=(drawQIdx+1)+' / 5もん';
-  if(drawMode==='free')document.getElementById('draw-hint').textContent=q.hint;
-  else document.getElementById('draw-hint').textContent='ドットをじゅんばんにタップして かたちをつくろう！';
   const diff=getDrawDiff();
-  const badge=document.getElementById('draw-diff-badge');
-  if(badge){
-    const labels={easy:'🌱 やさしい',normal:'⭐ ふつう',hard:'🔥 むずかしい'};
-    badge.textContent=labels[diff]||labels.normal;
-    badge.className='quiz-diff-badge '+diff;
-    badge.style.display='';
+}
+
+/* ──────────── FREE DRAW JUDGMENT ──────────── */
+function judgeDrawing(){
+  if(drawMode==='dot'){judgeDotDrawing();return}
+  if(drawPts.length<10){_setFeedback('もっとかいてみよう！','wrong');return}
+  const qs=getCurrentQs();const q=qs[drawQIdx%qs.length];
+  const diff=getDrawDiff();const tol=TOLERANCE[diff]||TOLERANCE.normal;
+  const closed=isClosed(drawPts);
+  if(tol.mustClose&&!closed){_setFeedback('かたちをとじてね！さいしょのてんにもどろう！','wrong');return}
+  const {simp,corners}=_getCorners(drawPts,closed);
+  const aspect=getAspectRatio(drawPts);
+  const hasRA=hasRightAngleFn(simp,tol.rightAngle);
+  const circle=isCircle(drawPts);
+  const result=judgeShape(q.shapeId,{corners,aspect,hasRA,circle,tol});
+  showStamp(result.ok);
+  if(result.ok){
+    playCorrect();spawnSparkles();
+    _setFeedback('やったね！じょうずに かけたね！','correct');
+    document.getElementById('draw-next-btn').style.display='';
+  }else{
+    playWrong();_setFeedback(result.msg,'wrong');
   }
 }
 
-// ──────────── DOT MODE ────────────
+function judgeShape(shapeId,{corners,aspect,hasRA,circle,tol}){
+  const cm=tol.cornerMargin;
+  switch(shapeId){
+    case 'circle':
+      return circle?{ok:true}:{ok:false,msg:'まるく かいてみよう！かどを なくしてね'};
+    case 'triangle':
+      if(Math.abs(corners-3)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。さんかくけいは 3つ だよ！'};
+      return{ok:true};
+    case 'triangle_strict':
+      if(Math.abs(corners-3)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。さんかくけいは 3つ だよ！'};
+      if(hasRA)return{ok:false,msg:'ちょっかくが あるよ。ふつうの さんかくけいを かいてね！'};
+      return{ok:true};
+    case 'quad':
+      if(Math.abs(corners-4)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。しかくけいは 4つ だよ！'};
+      return{ok:true};
+    case 'rect':
+    case 'rect_strict':
+      if(Math.abs(corners-4)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。しかくけいは 4つ だよ！'};
+      if(aspect<tol.rectRatio.min)return{ok:false,msg:'たてと よこが おなじ ながさに なってるよ。ながしかくは ちがう ながさにしてね！'};
+      if(shapeId==='rect_strict'&&aspect>2.5)return{ok:false,msg:'すこし ほそすぎるよ。もうすこし たてよこを ちかい ながさに してね！'};
+      return{ok:true};
+    case 'square':
+    case 'square_strict':
+      if(Math.abs(corners-4)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。しかくけいは 4つ だよ！'};
+      if(aspect>tol.squareRatio.max)return{ok:false,msg:'たてと よこの ながさが ちがうよ。ましかくは ぜんぶ おなじ ながさにしてね！'};
+      return{ok:true};
+    case 'righttri':
+      if(Math.abs(corners-3)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。さんかくけいは 3つ だよ！'};
+      if(!hasRA)return{ok:false,msg:'ちょっかくの かどが ないよ。かくっとした かどを 1つ いれてね！'};
+      return{ok:true};
+    case 'rhombus':
+      if(Math.abs(corners-4)>cm)return{ok:false,msg:'かどが'+corners+'つ あるよ。ひしがたは 4つ だよ！'};
+      if(hasRA)return{ok:false,msg:'ひしがたは かどが ちょっかくに ならないよ。ななめの しかくけいを かいてね！'};
+      return{ok:true};
+    default:
+      return{ok:false,msg:'もういちどためしてね！'};
+  }
+}
+
+/* ──────────── DOT MODE ──────────── */
 function initDotGrid(){
   if(!drawCanvas)return;
   dotGrid=[];
   const cw=drawCanvas.width,ch=drawCanvas.height;
-  const cols=Math.floor((cw-10)/DOT_SP)+1;
-  const rows=Math.floor((ch-10)/DOT_SP)+1;
+  const pad=40;
+  const cols=Math.floor((cw-pad*2)/DOT_SP)+1;
+  const rows=Math.floor((ch-pad*2)/DOT_SP)+1;
   const offX=Math.round((cw-(cols-1)*DOT_SP)/2);
   const offY=Math.round((ch-(rows-1)*DOT_SP)/2);
   for(let r=0;r<rows;r++)
@@ -1208,33 +1449,29 @@ function renderDotCanvas(){
   drawCtx.clearRect(0,0,cw,ch);
   drawCtx.fillStyle='#fff';drawCtx.fillRect(0,0,cw,ch);
 
-  // Segments
   if(dotSegs.length>0){
-    drawCtx.strokeStyle='#ff7043';drawCtx.lineWidth=4;drawCtx.lineCap='round';
+    drawCtx.strokeStyle='#ff8c00';drawCtx.lineWidth=3;drawCtx.lineCap='round';
     dotSegs.forEach(s=>{
       const a=dotGrid[s.from],b=dotGrid[s.to];
       drawCtx.beginPath();drawCtx.moveTo(a.x,a.y);drawCtx.lineTo(b.x,b.y);drawCtx.stroke();
     });
   }
 
-  // Dots
   const firstDot=dotSegs.length>0?dotSegs[0].from:-1;
   const usedSet=new Set();
   dotSegs.forEach(s=>{usedSet.add(s.from);usedSet.add(s.to)});
-  if(dotSelected!==null)usedSet.add(dotSelected);
 
   dotGrid.forEach((dot,idx)=>{
     let r=10,color='#ddd';
-    if(idx===firstDot&&dotSegs.length>0){r=12;color='#4CAF7D';}
+    if(idx===firstDot&&dotSegs.length>0){r=14;color='#4CAF7D';}
     else if(idx===dotSelected){r=12;color='#ff8c00';}
-    else if(usedSet.has(idx)){r=10;color='#ff8c00';}
+    else if(usedSet.has(idx)){r=12;color='#ff8c00';}
     drawCtx.beginPath();drawCtx.arc(dot.x,dot.y,r,0,Math.PI*2);
     drawCtx.fillStyle=color;drawCtx.fill();
   });
 }
 
 function handleDotTap(pos){
-  // Find nearest dot within tap range
   let nearest=null,nearestD=Infinity;
   dotGrid.forEach((dot,idx)=>{
     const d=Math.hypot(pos.x-dot.x,pos.y-dot.y);
@@ -1243,16 +1480,20 @@ function handleDotTap(pos){
   if(nearest===null)return;
   playTap();
 
+  const firstDot=dotSegs.length>0?dotSegs[0].from:-1;
+  // Close shape: tap first dot when at least 2 segs drawn
+  if(nearest===firstDot&&dotSegs.length>=2&&dotSelected!==null&&dotSelected!==firstDot){
+    dotSegs.push({from:dotSelected,to:firstDot});
+    dotSelected=firstDot;
+    renderDotCanvas();
+    return;
+  }
+
   if(dotSelected===null){
     dotSelected=nearest;
   }else if(nearest===dotSelected){
-    // Undo last segment or deselect
-    if(dotSegs.length>0){
-      dotSelected=dotSegs[dotSegs.length-1].from;
-      dotSegs.pop();
-    }else{
-      dotSelected=null;
-    }
+    if(dotSegs.length>0){dotSelected=dotSegs[dotSegs.length-1].from;dotSegs.pop();}
+    else{dotSelected=null;}
   }else{
     dotSegs.push({from:dotSelected,to:nearest});
     dotSelected=nearest;
@@ -1261,117 +1502,62 @@ function handleDotTap(pos){
 }
 
 function judgeDotDrawing(){
-  const q=DRAW_QS[drawQIdx];
-  if(dotSegs.length===0||dotSelected===null){alert('ドットをタップしてつないでね！');return}
-  const firstDot=dotSegs[0].from;
-  if(firstDot!==dotSelected){
-    document.getElementById('draw-hint').textContent='とじてね！（さいしょの てんに もどって！）';
-    return;
-  }
-  const diff=getDrawDiff();
-  const tol=TOLERANCE[diff]||TOLERANCE.normal;
-  const verts=dotSegs.map(s=>dotGrid[s.from]);
-  const corners=dotSegs.length;
-  const aspect=calcAspect(verts);
-  let result;
-  switch(q.shapeId){
-    case 'triangle':
-      result=corners===3?{ok:true}:{ok:false,msg:'3つのてんをつないでさんかくをつくろう！'};break;
-    case 'quad':
-      result=corners===4?{ok:true}:{ok:false,msg:'4つのてんをつないでしかくをつくろう！'};break;
-    case 'rect':{
-      if(corners!==4){result={ok:false,msg:'4つのてんをつないでしかくをつくろう！'};break}
-      if(aspect<tol.ratioRect.min){result={ok:false,msg:'もっとながしかくになるようにてんをえらんでね！'};break}
-      result={ok:true};break;
-    }
-    case 'square':{
-      if(corners!==4){result={ok:false,msg:'4つのてんをつないでましかくをつくろう！'};break}
-      if(aspect>tol.ratioSquare.max){result={ok:false,msg:'たてとよこをおなじながさにしてね！'};break}
-      result={ok:true};break;
-    }
-    case 'righttri':{
-      if(corners!==3){result={ok:false,msg:'3つのてんをつないでさんかくをつくろう！'};break}
-      if(!hasRightAngle(verts,true,tol)){result={ok:false,msg:'ちょっかくができるようにてんをえらんでね！'};break}
-      result={ok:true};break;
-    }
-    default:result={ok:false,msg:'もういちどためしてね！'};
-  }
-  showStamp(result.ok);
-  if(result.ok){
-    playCorrect();spawnSparkles();
-    document.getElementById('draw-hint').textContent='やったね！じょうずに かけたね！';
-    document.getElementById('draw-next-btn').style.display='flex';
-  }else{
-    playWrong();
-    if(result.msg)document.getElementById('draw-hint').textContent=result.msg;
-  }
-}
-// ──────────── END DOT MODE ────────────
+  if(dotSegs.length===0){_setFeedback('ドットをタップして つないでね！','wrong');return}
+  const closed=dotSegs.length>0&&dotSegs[dotSegs.length-1].to===dotSegs[0].from;
+  if(!closed){_setFeedback('とじてね！さいしょの てんに もどって！','wrong');return}
+  const diff=getDrawDiff();const tol=TOLERANCE[diff]||TOLERANCE.normal;
 
-function judgeDrawing(){
-  if(drawMode==='dot'){judgeDotDrawing();return}
-  if(drawPts.length<10){alert('もっとかいてみよう！');return}
-  const q=DRAW_QS[drawQIdx];
-  const diff=getDrawDiff();
-  const tol=TOLERANCE[diff]||TOLERANCE.normal;
-  if(tol.mustClose&&!isClosedDraw(drawPts)){
-    document.getElementById('draw-hint').textContent='かたちをとじてね！さいしょのてんにもどろう！';
-    return;
-  }
-  const poly=rdp(drawPts,12);
-  const corners=Math.max(poly.length-1,0);
-  const aspect=calcAspect(drawPts);
-  const closed=isClosedDraw(drawPts);
-  let result;
-  switch(q.shapeId){
-    case 'triangle':
-      result=Math.abs(corners-3)<=tol.cornerMargin?{ok:true}:{ok:false,msg:'かどが3つになるようにかこう！'};break;
-    case 'quad':
-      result=Math.abs(corners-4)<=tol.cornerMargin?{ok:true}:{ok:false,msg:'かどが4つになるようにかこう！'};break;
-    case 'rect':{
-      if(Math.abs(corners-4)>tol.cornerMargin){result={ok:false,msg:'かどが4つになるようにかこう！'};break}
-      if(aspect<tol.ratioRect.min){result={ok:false,msg:'もっとながしかくにしよう！（たてとよこをちがうながさに）'};break}
-      result={ok:true};break;
-    }
-    case 'square':{
-      if(Math.abs(corners-4)>tol.cornerMargin){result={ok:false,msg:'かどが4つになるようにかこう！'};break}
-      if(aspect>tol.ratioSquare.max){result={ok:false,msg:'もっとましかくにしよう！（たてとよこをおなじながさに）'};break}
-      result={ok:true};break;
-    }
-    case 'righttri':{
-      if(Math.abs(corners-3)>tol.cornerMargin){result={ok:false,msg:'かどが3つになるようにかこう！'};break}
-      if(!hasRightAngle(poly,closed,tol)){result={ok:false,msg:'ちょっかく（かくっとしたかど）をつくってね！'};break}
-      result={ok:true};break;
-    }
-    default:result={ok:false,msg:'もういちどためしてね！'};
-  }
+  // 全頂点を取得（始点の重複を除く）
+  const verts=dotSegs.map(s=>({x:dotGrid[s.from].x, y:dotGrid[s.from].y}));
+
+  // コーナー数 = セグメント数（閉じた多角形の辺の数）
+  const corners=dotSegs.length;
+
+  // 縦横比: バウンディングボックスから計算
+  const aspect=getAspectRatio(verts);
+
+  // 直角判定: 全頂点でなす角を計算（閉じた多角形として）
+  // 点つなぎは頂点が正確なのでtolを固定で15度にする
+  // 点つなぎは90度のみ直角と認める（±1度の誤差のみ許容）
+  const hasRA=hasDotRightAngle(verts, 1);
+
+  const qs=getCurrentQs();const q=qs[drawQIdx%qs.length];
+  const result=judgeShape(q.shapeId,{corners,aspect,hasRA,circle:false,tol});
   showStamp(result.ok);
   if(result.ok){
     playCorrect();spawnSparkles();
-    document.getElementById('draw-hint').textContent='やったね！じょうずに かけたね！';
-    document.getElementById('draw-next-btn').style.display='flex';
+    _setFeedback('やったね！じょうずに かけたね！','correct');
+    document.getElementById('draw-next-btn').style.display='';
   }else{
-    playWrong();
-    if(result.msg)document.getElementById('draw-hint').textContent=result.msg;
+    playWrong();_setFeedback(result.msg,'wrong');
   }
 }
-function countCorners(pts){if(pts.length<5)return 0;return Math.max(rdp(pts,12).length-1,0)}
-function rdp(pts,eps){
-  if(pts.length<=2)return pts;
-  let maxD=0,idx=0;const end=pts.length-1;
-  for(let i=1;i<end;i++){const d=perpDist(pts[i],pts[0],pts[end]);if(d>maxD){maxD=d;idx=i}}
-  if(maxD>eps)return[...rdp(pts.slice(0,idx+1),eps).slice(0,-1),...rdp(pts.slice(idx),eps)];
-  return[pts[0],pts[end]];
+
+// 点つなぎ専用の直角判定（ドット座標が正確なので厳密に計算）
+function hasDotRightAngle(verts, tol){
+  const n=verts.length;
+  if(n<3)return false;
+  for(let i=0;i<n;i++){
+    const A=verts[(i-1+n)%n];
+    const B=verts[i];
+    const C=verts[(i+1)%n];
+    const v1={x:A.x-B.x, y:A.y-B.y};
+    const v2={x:C.x-B.x, y:C.y-B.y};
+    const len1=Math.sqrt(v1.x**2+v1.y**2);
+    const len2=Math.sqrt(v2.x**2+v2.y**2);
+    if(len1<1||len2<1)continue;
+    const dot=(v1.x*v2.x+v1.y*v2.y)/(len1*len2);
+    const angle=Math.acos(Math.max(-1,Math.min(1,dot)))*180/Math.PI;
+    if(Math.abs(angle-90)<=tol)return true;
+  }
+  return false;
 }
-function perpDist(p,a,b){
-  const dx=b.x-a.x,dy=b.y-a.y,len=Math.sqrt(dx*dx+dy*dy);
-  if(len===0)return Math.sqrt((p.x-a.x)**2+(p.y-a.y)**2);
-  return Math.abs((dy*p.x-dx*p.y+b.x*a.y-b.y*a.x)/len);
-}
+
 function nextDrawQuestion(){
-  drawQIdx=(drawQIdx+1)%DRAW_QS.length;
+  const qs=getCurrentQs();
+  drawQIdx=(drawQIdx+1)%qs.length;
   drawPts=[];dotSegs=[];dotSelected=null;
-  setDrawQuestion();
+  setDrawQuestion();_setFeedback('','');
   document.getElementById('draw-next-btn').style.display='none';
   if(drawMode==='free')clearFreeCanvas();
   else renderDotCanvas();
